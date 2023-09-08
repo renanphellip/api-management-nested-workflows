@@ -1,4 +1,4 @@
-name: '4 - [HOM] Promote & CD'
+name: '4 - [HOM] Promote & Deploy'
 
 on:
   workflow_call:
