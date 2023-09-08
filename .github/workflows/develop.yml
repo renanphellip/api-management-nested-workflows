@@ -9,4 +9,4 @@ jobs:
       startsWith(github.head_ref, 'feature') &&
       github.base_ref == 'develop' &&
       github.event.pull_request.merged == true
-    uses: ./.github/workflows/core-develop.yml@main
+    uses: ./.github/workflows/core-develop.yml
