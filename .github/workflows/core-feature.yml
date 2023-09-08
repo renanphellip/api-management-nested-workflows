@@ -1,0 +1,99 @@
+name: Core Feature
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        default: ubuntu-latest
+        required: false
+        type: string
+
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ inputs.runner }}
+    steps:
+      - name: Checkout feature ref
+        uses: actions/checkout@v4
+
+      - name: Resolve API contract
+        run: echo "OK"
+      
+      - name: Lint API contract
+        run: echo "OK"
+
+      - name: Checkout develop ref
+        uses: actions/checkout@v4
+        with:
+          ref: develop
+      
+      - name: Resolve develop API contract
+        run: echo "OK"
+      
+      - name: Diff API contracts
+        run: echo "OK"
+      
+      - name: Create build package
+        run: echo "OK"
+      
+      - name: Publish build package
+        run: echo "OK"
+
+  style-guide:
+    name: Style Guide
+    runs-on: ${{ inputs.runner }}
+    needs: build
+    steps:
+      - name: Download build package
+        run: echo "OK"
+      
+      - name: Validate style guide
+        run: echo "OK"
+
+  aws-dev:
+    name: AWS DEV
+    runs-on: ${{ inputs.runner }}
+    needs: build
+    steps:
+      - name: Download build package
+        run: echo "OK"
+      
+      - name: Validate AWS integrations
+        run: echo "OK"
+      
+      - name: Validate AWS S3
+        run: echo "OK"
+      
+      - name: Validate AWS API Gateway
+        run: echo "OK"
+
+  contract-break:
+    name: Contract Break
+    runs-on: ${{ inputs.runner }}
+    needs: build
+    continue-on-error: true
+    steps:
+      - name: Download build package
+        run: echo "OK"
+      
+      - name: Validate contract break
+        run: echo "OK"
+
+  gates:
+    name: Gates
+    runs-on: ${{ inputs.runner }}
+    needs:
+      - style-guide
+      - aws-dev
+    steps:
+      - name: Check required jobs
+        run: echo "OK"
+
+  pull-request:
+    name: Pull Request
+    runs-on: ${{ inputs.runner }}
+    needs: gates
+    continue-on-error: true
+    steps:
+      - name: Open PR to develop
+        run: echo "OK"

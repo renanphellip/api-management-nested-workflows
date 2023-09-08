@@ -1,0 +1,9 @@
+name: '1 - [FEAT] CI'
+
+on:
+  workflow_call:
+
+jobs:
+  feature:
+    if: startsWith(github.ref_name, 'feature')
+    uses: ./.github/workflows/core-feature.yml@main

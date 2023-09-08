@@ -1,0 +1,12 @@
+name: '3 - [GATES] CI'
+
+on:
+  workflow_call:
+
+jobs:
+  gates:
+    if: |
+      github.head_ref == 'develop' &&
+      startsWith(github.base_ref, 'release') &&
+      github.event.pull_request.merged == false
+    uses: ./.github/workflows/core-gates.yml@main

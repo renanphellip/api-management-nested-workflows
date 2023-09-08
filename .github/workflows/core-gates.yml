@@ -1,0 +1,105 @@
+name: Core Gates
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        default: ubuntu-latest
+        required: false
+        type: string
+
+jobs:
+  track:
+    name: Track
+    runs-on: ${{ inputs.runner }}
+    steps:
+      - name: Add comment to PR
+        run: echo "OK"
+
+  package:
+    name: Package
+    runs-on: ${{ inputs.runner }}
+    steps:
+      - name: Checkout merge ref
+        uses: actions/checkout@v4
+
+      - name: Get release version
+        run: echo "OK"
+      
+      - name: Assume AWS IAM role
+        run: echo "OK"
+      
+      - name: Download latest release package from AWS S3
+        run: echo "OK"
+      
+      - name: Publish package on Github
+        run: echo "OK"
+
+  aws-hom:
+    name: AWS HOM
+    runs-on: ${{ inputs.runner }}
+    needs: package
+    steps:
+      - name: Download package
+        run: echo "OK"
+      
+      - name: Validate AWS integrations
+        run: echo "OK"
+      
+      - name: Validate AWS S3
+        run: echo "OK"
+      
+      - name: Validate AWS API Gateway
+        run: echo "OK"
+
+  aws-prod:
+    name: AWS PROD
+    runs-on: ${{ inputs.runner }}
+    needs: package
+    steps:
+      - name: Download package
+        run: echo "OK"
+      
+      - name: Validate AWS integrations
+        run: echo "OK"
+      
+      - name: Validate AWS S3
+        run: echo "OK"
+      
+      - name: Validate AWS API Gateway
+        run: echo "OK"
+
+  contract-break:
+    name: Contract Break
+    runs-on: ${{ inputs.runner }}
+    needs: package
+    continue-on-error: true
+    steps:
+      - name: Download package
+        run: echo "OK"
+      
+      - name: Validate contract break
+        run: echo "OK"
+      
+      - name: Check formalization
+        run: echo "OK"
+
+  gates:
+    name: Gates
+    runs-on: ${{ inputs.runner }}
+    needs:
+      - aws-hom
+      - aws-prod
+      - contract-break
+    steps:
+      - name: Check required jobs
+        run: echo "OK"
+
+  pull-request:
+    name: Pull Request
+    runs-on: ${{ inputs.runner }}
+    needs: gates
+    continue-on-error: true
+    steps:
+      - name: Open PR to main
+        run: echo "OK"

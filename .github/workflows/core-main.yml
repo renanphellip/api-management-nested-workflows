@@ -1,0 +1,61 @@
+name: Core Main
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        default: ubuntu-latest
+        required: false
+        type: string
+
+jobs:
+  track:
+    name: Track
+    runs-on: ${{ inputs.runner }}
+    steps:
+      - name: Add comment to PR
+        run: echo "OK"
+
+  aws-prod:
+    name: AWS PROD
+    runs-on: ${{ inputs.runner }}
+    steps:
+      - name: Validate AWS S3
+        run: echo "OK"
+      
+      - name: Validate AWS API Gateway
+        run: echo "OK"
+
+  promote:
+    name: Promote
+    runs-on: ${{ inputs.runner }}
+    needs: aws-prod
+    steps:
+      - name: Checkout merge ref
+        uses: actions/checkout@v4
+
+      - name: Get release version
+        run: echo "OK"
+      
+      - name: Assume AWS IAM role
+        run: echo "OK"
+      
+      - name: Promote package in AWS S3
+        run: echo "OK"
+      
+      - name: Download promoted package from AWS S3
+        run: echo "OK"
+      
+      - name: Publish package on Github
+        run: echo "OK"
+
+  deploy:
+    name: Deploy
+    runs-on: ${{ inputs.runner }}
+    needs: promote
+    steps:
+      - name: Download promoted package
+        run: echo "OK"
+      
+      - name: Deploy API contract to API Gateway
+        run: echo "OK"

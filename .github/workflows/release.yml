@@ -1,0 +1,12 @@
+name: '4 - [HOM] Promote & CD'
+
+on:
+  workflow_call:
+
+jobs:
+  release:
+    if: |
+      github.head_ref == 'develop' &&
+      startsWith(github.base_ref, 'release') &&
+      github.event.pull_request.merged == true
+    uses: ./.github/workflows/core-release.yml@main
