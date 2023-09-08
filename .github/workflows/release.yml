@@ -4,8 +4,8 @@ on:
   workflow_call:
 
 jobs:
-  release:
-    name: Release
+  hom:
+    name: HOM
     if: |
       github.head_ref == 'develop' &&
       startsWith(github.base_ref, 'release/v') &&

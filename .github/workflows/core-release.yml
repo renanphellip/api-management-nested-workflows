@@ -1,4 +1,4 @@
-name: '4. Core Release'
+name: '[CORE] 4. Release'
 
 on:
   workflow_call:

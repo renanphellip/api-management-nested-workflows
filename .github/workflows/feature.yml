@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  feature:
-    name: Feature
+  pre-dev:
+    name: Pre DEV
     if: startsWith(github.ref_name, 'feature/')
     uses: ./.github/workflows/core-feature.yml

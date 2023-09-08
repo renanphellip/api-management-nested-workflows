@@ -1,4 +1,4 @@
-name: '5. Core Main'
+name: '[CORE] 5. Main'
 
 on:
   workflow_call:

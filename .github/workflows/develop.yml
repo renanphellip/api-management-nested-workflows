@@ -4,8 +4,8 @@ on:
   workflow_call:
 
 jobs:
-  develop:
-    name: Develop
+  dev:
+    name: DEV
     if: |
       startsWith(github.head_ref, 'feature/') &&
       github.base_ref == 'develop' &&

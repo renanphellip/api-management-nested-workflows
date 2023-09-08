@@ -1,4 +1,4 @@
-name: '3. Core Gates'
+name: '[CORE] 3. Gates'
 
 on:
   workflow_call:

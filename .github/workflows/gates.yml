@@ -4,8 +4,8 @@ on:
   workflow_call:
 
 jobs:
-  gates:
-    name: Gates
+  pre-hom-prod:
+    name: Pre HOM & PROD
     if: |
       github.head_ref == 'develop' &&
       startsWith(github.base_ref, 'release/v') &&
