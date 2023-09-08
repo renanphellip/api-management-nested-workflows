@@ -1,10 +1,11 @@
-name: '3 - [GATES] CI'
+name: '3. Gates'
 
 on:
   workflow_call:
 
 jobs:
   gates:
+    name: Gates
     if: |
       github.head_ref == 'develop' &&
       startsWith(github.base_ref, 'release/v') &&

@@ -1,10 +1,11 @@
-name: '2 - [DEV] CI & CD'
+name: '2. Develop'
 
 on:
   workflow_call:
 
 jobs:
   develop:
+    name: Develop
     if: |
       startsWith(github.head_ref, 'feature/') &&
       github.base_ref == 'develop' &&

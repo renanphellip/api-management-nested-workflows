@@ -1,9 +1,10 @@
-name: '1 - [FEAT] CI'
+name: '1. Feature'
 
 on:
   workflow_call:
 
 jobs:
   feature:
+    name: Feature
     if: startsWith(github.ref_name, 'feature/')
     uses: ./.github/workflows/core-feature.yml

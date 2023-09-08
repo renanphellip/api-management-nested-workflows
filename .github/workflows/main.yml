@@ -1,10 +1,11 @@
-name: '5 - [PROD] Promote & Deploy'
+name: '5. Main'
 
 on:
   workflow_call:
 
 jobs:
   main:
+    name: Main
     if: |
       startsWith(github.head_ref, 'release/v') &&
       github.base_ref == 'main' &&

@@ -1,10 +1,11 @@
-name: '4 - [HOM] Promote & Deploy'
+name: '4. Release'
 
 on:
   workflow_call:
 
 jobs:
   release:
+    name: Release
     if: |
       github.head_ref == 'develop' &&
       startsWith(github.base_ref, 'release/v') &&

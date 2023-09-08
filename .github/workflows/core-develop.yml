@@ -1,4 +1,4 @@
-name: Core Develop
+name: '2. Core Develop'
 
 on:
   workflow_call:
