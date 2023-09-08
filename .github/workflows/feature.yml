@@ -5,5 +5,5 @@ on:
 
 jobs:
   feature:
-    if: startsWith(github.ref_name, 'feature')
+    if: startsWith(github.ref_name, 'feature/')
     uses: ./.github/workflows/core-feature.yml

@@ -7,6 +7,6 @@ jobs:
   release:
     if: |
       github.head_ref == 'develop' &&
-      startsWith(github.base_ref, 'release') &&
+      startsWith(github.base_ref, 'release/v') &&
       github.event.pull_request.merged == true
     uses: ./.github/workflows/core-release.yml

@@ -6,7 +6,7 @@ on:
 jobs:
   main:
     if: |
-      startsWith(github.head_ref, 'release') &&
+      startsWith(github.head_ref, 'release/v') &&
       github.base_ref == 'main' &&
       github.event.pull_request.merged == true
     uses: ./.github/workflows/core-main.yml

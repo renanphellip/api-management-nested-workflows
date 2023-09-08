@@ -6,7 +6,7 @@ on:
 jobs:
   develop:
     if: |
-      startsWith(github.head_ref, 'feature') &&
+      startsWith(github.head_ref, 'feature/') &&
       github.base_ref == 'develop' &&
       github.event.pull_request.merged == true
     uses: ./.github/workflows/core-develop.yml
