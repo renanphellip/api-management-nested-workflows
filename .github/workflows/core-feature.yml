@@ -73,11 +73,33 @@ jobs:
     needs: build
     continue-on-error: true
     steps:
-      - name: Download build package
-        run: echo "OK"
+      - name: Checkout feature
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .
       
-      - name: Validate contract break
-        run: echo "OK"
+      - name: Checkout develop
+        uses: actions/checkout@v4
+        with:
+          ref: develop
+          path: develop
+      
+      - name: Install OASdiff
+        run: go install github.com/tufin/oasdiff@latest
+      
+      - name: OASdiff changelog
+        run: |
+          oasdiff changelog develop/openapi.yaml openapi.yaml -f singleline | tee changelog.txt
+          if grep "error at" changelog.txt > /dev/null ; then
+            echo "A versao MAJOR devera ser atualizada."
+            echo "update-version=major" >> "$GITHUB_OUTPUT"
+          elif grep "warning at" changelog.txt > /dev/null ; then
+            echo "A versao MINOR devera ser atualizada."
+            echo "update-version=minor" >> "$GITHUB_OUTPUT"
+          else
+            echo "A versao PATCH devera ser atualizada."
+            echo "update-version=patch" >> "$GITHUB_OUTPUT"
+          fi
 
   gates:
     name: Gates
