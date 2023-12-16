@@ -84,18 +84,19 @@ jobs:
           ref: develop
           path: develop
       
-      - name: Install OASdiff
-        run: |
-          curl -O https://github.com/Tufin/oasdiff/releases/download/v1.10.2/oasdiff_1.10.2_linux_amd64.tar.gz -o oasdiff.tgz
-          tar -xvf oasdiff.tgz
+      - name: Running OpenAPI Spec diff action
+        id: changelog
+        uses: renanphellip/oasdiff-action/changelog@main
+        with:
+          base: develop/openapi.yaml
+          revision: openapi.yaml
       
       - name: OASdiff changelog
         run: |
-          oasdiff changelog develop/openapi.yaml openapi.yaml -f singleline | tee changelog.txt
-          if grep "error at" changelog.txt > /dev/null ; then
+          if [ "${{ steps.changelog.outputs.errors }}" -gt "0" ]; then
             echo "A versao MAJOR devera ser atualizada."
             echo "update-version=major" >> "$GITHUB_OUTPUT"
-          elif grep "warning at" changelog.txt > /dev/null ; then
+          elif [ "${{ steps.changelog.outputs.warnings }}" -gt "0" ]; then
             echo "A versao MINOR devera ser atualizada."
             echo "update-version=minor" >> "$GITHUB_OUTPUT"
           else
