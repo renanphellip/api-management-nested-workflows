@@ -85,7 +85,9 @@ jobs:
           path: develop
       
       - name: Install OASdiff
-        run: go install github.com/tufin/oasdiff@latest
+        run: |
+          curl -O https://github.com/Tufin/oasdiff/releases/download/v1.10.2/oasdiff_1.10.2_linux_amd64.tar.gz -o oasdiff.tgz
+          tar -xvf oasdiff.tgz
       
       - name: OASdiff changelog
         run: |
